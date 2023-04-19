@@ -1,0 +1,15 @@
+AddDefaultCharset utf-8
+
+# disable directory browsing
+Options All -Indexes
+
+#Protect against Hotlinking
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?restaurangkarl.se/ [NC]
+RewriteRule \.(jpg|jpeg|png|gif|pdf|bmp)$ - [R,NC]
+
+#disable www from browser
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^restaurangkarl.se$ [NC]
+RewriteRule ^(.*)$ http://restaurangkarl.se/$1 [L,R=301]
